@@ -1,0 +1,19 @@
+<?php
+    
+    namespace App\Http\Middleware;
+    
+    use Closure;
+    use Illuminate\Support\Facades\Auth;
+
+    class AppMiddleware
+    {
+        public function handle($request, Closure $next)
+        {
+            
+            if(Auth::guest()) {
+                return redirect('/login');
+            }
+            
+            return $next($request);
+        }
+    }
